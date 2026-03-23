@@ -8,7 +8,7 @@ async function getWeather() {
     return;
   }
 
-  const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
+  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
 
   try {
     const response = await fetch(url);
