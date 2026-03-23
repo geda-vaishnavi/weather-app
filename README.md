@@ -5,7 +5,7 @@ A lightweight, responsive web application that fetches live weather data using t
 ---
 
 ## 🌐 Live Demo
-**View the application here:** [https://geda-vaishnavi.github.io/weather-app/](https://geda-vaishnavi.github.io/weather-app/)
+**View the application here:** [http://geda-vaishnavi.github.io/weather-app/](http://geda-vaishnavi.github.io/weather-app/)
 
 ---
 
