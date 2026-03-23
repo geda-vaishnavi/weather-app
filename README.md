@@ -1,42 +1,49 @@
-# 📍 CityWeather - Location-Based Weather Dashboard
+# 🌤️ CityWeather - Real-Time Weather Tracker
 
-A dynamic web application that allows users to input any global location and instantly retrieve real-time weather data. This project showcases **clean DOM manipulation**, **event-driven programming**, and **asynchronous API integration**.
-
----
-
-## 🌐 Live Project
-**Experience the app here:** [https://geda-vaishnavi.github.io/weather-app/](https://geda-vaishnavi.github.io/weather-app/)
+A lightweight, responsive web application that fetches live weather data using the **WeatherAPI.com** engine. This project demonstrates clean implementation of **Asynchronous JavaScript**, **Error Handling**, and **REST API Integration**.
 
 ---
 
-## 🚀 How It Works
-1. **User Input:** The user enters a city or location name (e.g., "Pune" or "London") into the search field.
-2. **Data Fetching:** Upon clicking 'Search' or pressing 'Enter', the app triggers a `fetch` request to the OpenWeatherMap API.
-3. **Data Transformation:** The raw JSON response is processed to extract temperature, description, humidity, and wind speed.
-4. **Dynamic Update:** The UI updates instantly using JavaScript to display the weather details without a page refresh.
+## 🌐 Live Demo
+**View the application here:** [https://geda-vaishnavi.github.io/weather-app/](https://geda-vaishnavi.github.io/weather-app/)
+
+---
+
+## 🚀 Key Features
+- **Location-Based Search:** Takes any global location as input and retrieves instant weather reports.
+- **Asynchronous Data Fetching:** Utilizes `async/await` and the `Fetch API` for non-blocking network requests.
+- **Real-Time Updates:** Displays City/Country name, Temperature in Celsius, and Weather Conditions (e.g., Sunny, Cloudy) dynamically.
+- **Error Handling:** 
+  - Prevents empty searches with user alerts.
+  - Handles "Location not found" scenarios via API error response checks.
+  - Catches network failures using `try...catch` blocks.
 
 ---
 
 ## 🛠️ Technical Implementation
-- **Frontend Architecture:** Semantic HTML5 and CSS3 for a clean, user-friendly interface.
-- **Asynchronous Logic:** Implemented `async/await` patterns to ensure a smooth, non-blocking user experience during data retrieval.
-- **API Integration:** Utilizes the **OpenWeatherMap REST API** for global weather data coverage.
-- **Input Validation:** Includes basic error handling to manage cases where a city name is misspelled or not found in the database.
+The logic for this application is built on a robust JavaScript function:
+- **API Engine:** [WeatherAPI.com](https://www.weatherapi.com/)
+- **State Management:** Direct DOM manipulation for fast UI updates.
+- **Data Points:** 
+  - `data.location.name` & `data.location.country` for precise location mapping.
+  - `data.current.temp_c` for metric temperature data.
+  - `data.current.condition.text` for descriptive weather states.
 
 ---
 
-## 🧰 Tech Stack
-- **Language:** JavaScript (ES6+)
-- **Markup/Styles:** HTML5, CSS3 (Custom Styles/Tailwind)
-- **Data Source:** OpenWeatherMap API
-- **Deployment:** GitHub Pages
-
----
-
-## 📂 Project Structure
-```text
-.
-├── index.html          # Main structure and search interface
-├── script.js           # API logic and DOM manipulation
-├── style.css           # Responsive design and UI styling
-└── README.md           # Documentation
+## 📂 Code Snippet (Logic Overview)
+```javascript
+async function getWeather() {
+  const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
+  
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    // UI Updating Logic
+    document.getElementById("city").innerText = `${data.location.name}, ${data.location.country}`;
+    document.getElementById("temp").innerText = `🌡 Temperature: ${data.current.temp_c}°C`;
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+}
